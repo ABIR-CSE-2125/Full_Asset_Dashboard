@@ -1,0 +1,122 @@
+<%- include('./header.ejs') %>
+<div
+  class="card m-3"
+  style="
+    background-color: rgb(255, 255, 255);
+    border-color: black;
+    border-radius: 35px;
+    margin: auto;
+    padding: 20px;
+  "
+>
+  <h2 class="text-center mb-4">Update Asset</h2>
+  <form method="post" action="/update/asset/<%= data.asset_id %>">
+    <div class="mb-3 row">
+      <label for="asset_id" class="col-sm-2 col-form-label">Asset Id</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="asset_id"
+          name="asset_id"
+          value="<%= data.asset_id %>"
+          readonly
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="asset_name" class="col-sm-2 col-form-label">Asset Name</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="asset_name"
+          name="asset_name"
+          value="<%= data.asset_name %>"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="asset_type" class="col-sm-2 form-label">Asset Type</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="asset_type"
+          name="asset_type"
+          value="<%= data.asset_type %>"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="initial_cost" class="col-sm-2 col-form-label"
+        >Initial Cost</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="initial_cost"
+          name="initial_cost"
+          value="<%= data.initial_cost %>"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="operational_status" class="col-sm-2 col-form-label"
+        >Operational Status</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="operational_status"
+          name="operational_status"
+          value="<%= data.operational_status %>"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="street_no" class="col-sm-2 col-form-label">Street No</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="street_no"
+          name="street_no"
+          value="<%= data.asset_loc.street_no %>"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="city" class="col-sm-2 col-form-label">City</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="city"
+          name="city"
+          value="<%= data.asset_loc.city %>"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="pincode" class="col-sm-2 col-form-label">Pincode</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="pincode"
+          name="pincode"
+          value="<%= data.asset_loc.pincode %>"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-sm-10 offset-sm-2">
+        <button type="submit" class="btn btn-success">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
+<%- include('./footer.ejs') %>

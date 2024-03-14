@@ -1,0 +1,88 @@
+<%- include('./header.ejs') %>
+<div
+  class="card m-3"
+  style="
+    background-color: rgb(255, 255, 255);
+    border-color: black;
+    border-radius: 35px;
+    margin: auto;
+    padding: 20px;
+  "
+>
+  <h2 class="text-center mb-4">Add Performance of The Asset</h2>
+  <form method="post" action="/api/add/performance">
+    <div class="mb-3 row">
+      <label for="asset_id" class="col-sm-2 col-form-label">Asset Id</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="asset_id"
+          name="asset_id"
+          value="<%= asset_id %>"
+          readonly
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="uptime" class="col-sm-2 col-form-label">Uptime</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="uptime" name="uptime" />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="downtime" class="col-sm-2 col-form-label">Downtime</label>
+      <div class="col-sm-10">
+        <input
+          type="number"
+          class="form-control"
+          id="downtime"
+          name="downtime"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="maintenance_cost" class="col-sm-2 col-form-label"
+        >Maintainance Cost</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="number"
+          class="form-control"
+          id="maintenance_cost"
+          name="maintenance_cost"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="failure_rate" class="col-sm-2 col-form-label"
+        >Failure Rate</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="number"
+          class="form-control"
+          id="failure_rate"
+          name="failure_rate"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="efficiency" class="col-sm-2 col-form-label">Efficiency</label>
+      <div class="col-sm-10">
+        <input
+          type="number"
+          class="form-control"
+          id="efficiency"
+          name="efficiency"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-sm-10 offset-sm-2">
+        <button type="submit" class="btn btn-success">Add Asset</button>
+      </div>
+    </div>
+  </form>
+</div>
+<%- include('./footer.ejs') %>

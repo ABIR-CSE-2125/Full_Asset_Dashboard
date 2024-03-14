@@ -1,0 +1,113 @@
+<%- include('./header.ejs') %>
+<div
+  class="card m-3"
+  style="
+    background-color: rgb(255, 255, 255);
+    border-color: black;
+    border-radius: 35px;
+    margin: auto;
+    padding: 20px;
+  "
+>
+  <h2 class="text-center mb-4">Add New Asset</h2>
+  <form method="post" action="/api/add/asset">
+    <div class="mb-3 row">
+      <label for="asset_id" class="col-sm-2 col-form-label">Asset Id</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="asset_id" name="asset_id" />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="asset_name" class="col-sm-2 col-form-label">Asset Name</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="asset_name"
+          name="asset_name"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="asset_type" class="form-label">Asset Type</label>
+      <div class="col-sm-10" style="margin-left: 132px">
+        <select id="asset_type" class="custom-select" name="asset_type">
+          <% type_list.forEach(type => { %>
+          <option value="<%= type.type_id %>"><%= type.type_desc %></option>
+          <% }); %>
+        </select>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="purchase_date" class="col-sm-2 col-form-label"
+        >Purchase Date</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="date"
+          class="form-control"
+          id="purchase_date"
+          name="purchase_date"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="initial_cost" class="col-sm-2 col-form-label"
+        >Initial Cost</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="initial_cost"
+          name="initial_cost"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="operational_status" class="form-label"
+        >Operational Status</label
+      >
+      <div class="col-sm-10" style="margin-left: 70px">
+        <select
+          id="operational_status"
+          class="custom-select"
+          name="operational_status"
+        >
+          <% status_list.forEach(status => { %>
+          <option value="<%= status.sts_id %>"><%= status.sts_desc %></option>
+          <% }); %>
+        </select>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="street_no" class="col-sm-2 col-form-label">Street No</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="street_no"
+          name="street_no"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="city" class="col-sm-2 col-form-label">City</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="city" name="city" />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="pincode" class="col-sm-2 col-form-label">Pincode</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="pincode" name="pincode" />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-sm-10 offset-sm-2">
+        <button type="submit" class="btn btn-success">Add Performance</button>
+      </div>
+    </div>
+  </form>
+</div>
+<%- include('./footer.ejs') %>

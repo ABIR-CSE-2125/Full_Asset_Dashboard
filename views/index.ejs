@@ -1,0 +1,216 @@
+<%- include('./header.ejs') %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <div
+          class="card-body p-2"
+          style="text-align: center; background: rgb(199, 238, 192)"
+        >
+          <h1>Asset Details</h1>
+          <form action="/" method="post">
+            <div class="dropdown">
+              <button
+                class="btn btn-success dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Select Asset
+              </button>
+              <div
+                class="dropdown-menu"
+                aria-labelledby="dropdownMenuButton"
+                style="max-height: 200px; overflow-y: auto"
+              >
+                <% for( let i = 0; i < asset_list.length; i++ ) { %>
+                <p
+                  class="dropdown-item"
+                  onclick="updateAssetId('<%= asset_list[i].asset_id %>')"
+                >
+                  <%= asset_list[i].asset_name %> <% } %>
+                </p>
+              </div>
+              <input
+                type="text"
+                id="assetIdInput"
+                name="asset_id"
+                readonly
+                style="
+                  border: 1px solid #ced4da;
+                  border-radius: 0.4rem;
+                  padding: 0.375rem 0.75rem;
+                  font-size: 1rem;
+                  line-height: 1.75;
+                  color: #495057;
+                  background-color: #fff;
+                  background-clip: padding-box;
+                "
+              />
+              <button class="btn btn-success" type="submit">Find</button>
+            </div>
+          </form>
+
+          <div class="card m-1">
+            <div
+              class="card-body p-2"
+              style="
+                text-align: center;
+                background: rgb(255, 255, 255);
+                border-radius: 20px;
+              "
+            >
+              <% if (locals.a_data) { %>
+              <div style="text-align: left">
+                asset_id: <%= a_data.asset_id %> <br />
+                asset_name :<%= a_data.asset_name %> <br />
+                asset_type: <%= a_data.asset_type %> <br />
+                asset_loc: <br />
+                { street_no : <%= a_data.asset_loc.street_no %> <br />
+                city : <%= a_data.asset_loc.city %> <br />
+                pincode: <%= a_data.asset_loc.pincode %> <br />
+                } <br />
+                purchase_date: <%= a_data.purchase_date %> <br />
+                initial_cost: <%= a_data.initial_cost %> <br />
+                operational_status: <%= a_data.operational_status %> <br />
+              </div>
+              <br />
+              <% } else { %>
+              <h4>Select Asset</h4>
+              <% } %> <% if (locals.p_data) { %>
+              <div style="text-align: left">
+                uptime: <%= p_data.uptime %><br />
+                downtime: <%= p_data.downtime %> <br />
+                maintenance_cost: <%= p_data.maintenance_cost %> <br />
+                failure_rate: <%= p_data.failure_rate %> <br />
+                efficiency: <%= p_data.efficiency %> <br />
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div
+        class="container"
+        style="
+          text-align: center;
+          background: rgb(199, 238, 192);
+          border-radius: 0.4rem;
+        "
+      >
+        <h3><a href="/add" style="color: azure">Add New Asset</a></h3>
+      </div>
+      <div
+        class="container"
+        style="
+          text-align: center;
+          background: rgb(199, 238, 192);
+          border-radius: 0.4rem;
+        "
+      >
+        <h3>
+          <% if (locals.a_data) { %>
+
+          <a href="/updateA/<%= a_data.asset_id %>" style="color: azure"
+            >Update Asset Info</a
+          >
+          <% } else {%>
+          <a href="#" style="color: azure">Update Asset Info</a>
+          <% } %>
+        </h3>
+      </div>
+      <div
+        class="container"
+        style="
+          text-align: center;
+          background: rgb(199, 238, 192);
+          border-radius: 0.4rem;
+        "
+      >
+        <h3>
+          <% if (locals.a_data) { %>
+          <a href="/updateP/<%= a_data.asset_id %>" style="color: azure"
+            >Update Asset Performance</a
+          >
+          <% } else {%>
+          <a href="#" style="color: azure">Update Asset Info</a>
+          <% } %>
+        </h3>
+      </div>
+      <div
+        class="container"
+        style="
+          text-align: center;
+          background: rgb(199, 238, 192);
+          border-radius: 0.4rem;
+        "
+      >
+        <h3 style="color: azure">Delete Record</h3>
+        <% if (locals.a_data) { %>
+          <form action="/delete/<%= a_data.asset_id %>" method="post" >
+            <% } else {%>
+            <form action="/delete/-1" method="post">
+            <% } %>
+            <div class="mb-3 row">
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="delete_option"
+                  id="delete_option1"
+                  value="1"
+                />
+                <label class="form-check-label" for="delete_option1">
+                  Asset
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="delete_option"
+                  id="delete_option1"
+                  value="2"
+                />
+                <label class="form-check-label" for="delete_option1">
+                  Performance
+                </label>
+              </div>
+            </div>
+            <!-- <div class="col-sm-10">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="delete_option"
+                  id="delete_option1"
+                  value="3"
+                />
+                <label class="form-check-label" for="delete_option1">
+                  Cascade
+                </label>
+              </div>
+            </div>  -->
+            <div class="col-sm-10">
+              <button class="btn btn-danger my-2" type="submit">Delete</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function updateAssetId(assetId) {
+    document.getElementById("assetIdInput").value = assetId;
+  }
+</script>
+<%- include('./footer.ejs') %>
